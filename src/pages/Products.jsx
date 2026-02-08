@@ -1,8 +1,26 @@
+import { useState, useEffect } from "react";
+
 const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch products from backend API
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h2 className="text-2xl font-bold mb-6">Our Products</h2>
-      <p>Explore our wide range of products and find what you love!</p>
+    <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+      {
+        products.map(product=>(
+          <div className="border border-gray-300 rounded-lg p-4" key={product.id}>
+            <img src={product.image} alt={product.name} className="h-40 mx-auto" />
+            <h3 className="text-lg font-semibold">{product.title}</h3>
+            <p className="text-gray-700">Tk{product.price}</p>
+          </div>
+        ))
+      }
     </div>
   );
 };
