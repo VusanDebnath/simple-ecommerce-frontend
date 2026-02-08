@@ -1,13 +1,14 @@
+import Navbar from "./components/Navbar";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-
   return (
-    <>
-      <h1 className="text-3xl font-bold text-blue-500">
-        Tailwind is working!
-      </h1>
-    </>
-  )
+    <BrowserRouter>
+      <Navbar />
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
